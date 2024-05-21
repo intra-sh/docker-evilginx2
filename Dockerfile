@@ -8,6 +8,7 @@ ENV GITHUB_USER="kgretzky"
 ENV EVILGINX_REPOSITORY="github.com/${GITHUB_USER}/evilginx2"
 ENV INSTALL_PACKAGES="git make gcc musl-dev go"
 ENV PROJECT_DIR="${GOPATH}/src/${EVILGINX_REPOSITORY}"
+ENV EVILGINX_BIN="${EVILGINX_BIN}"
 
 RUN mkdir -p ${GOPATH}/src/github.com/${GITHUB_USER} \
     && apk add --no-cache ${INSTALL_PACKAGES} \
@@ -18,6 +19,8 @@ RUN set -ex \
 		&& cp ${PROJECT_DIR}/build/evilginx ${EVILGINX_BIN}
 
 FROM golang:bookworm
+
+ENV EVILGINX_BIN="${EVILGINX_BIN}"
 
 COPY --from=build-alpine ${EVILGINX_BIN} ${EVILGINX_BIN}
 

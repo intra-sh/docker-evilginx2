@@ -19,7 +19,7 @@ RUN set -ex \
 FROM golang:bookworm
 
 COPY --from=build-alpine /bin/evilginx /bin/evilginx
-
+RUN sha256sum /bin/evilginx
 COPY ./docker-entrypoint.sh /opt/
 RUN chmod +x /opt/docker-entrypoint.sh
 		

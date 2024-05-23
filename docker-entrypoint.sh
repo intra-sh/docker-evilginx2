@@ -2,4 +2,4 @@
 #
 #
 #
-/bin/evilginx -p /phishlets -c /config -developer || while true; do true; sleep 1; done
+/bin/evilginx -p /phishlets -c /config -t /redirectors -developer || while true; do true; sleep 1; done
